@@ -43,46 +43,7 @@ Your backend server should expose a POST endpoint at `/summarize` that:
 
 -   Accepts JSON payload: `{ "text": "your text here" }`
 -   Returns JSON response with the summary in one of these formats:
-    -   `{ "summary": "summarized text" }`
     -   `{ "summarized_text": "summarized text" }`
-    -   `{ "result": "summarized text" }`
-
-Example backend endpoint (Python Flask):
-
-```python
-from flask import Flask, request, jsonify
-from flask_cors import CORS
-
-app = Flask(__name__)
-CORS(app)  # Enable CORS for frontend
-
-@app.route('/summarize', methods=['POST'])
-def summarize():
-    data = request.get_json()
-    text = data.get('text', '')
-
-    # Your summarization logic here
-    summary = your_summarization_function(text)
-
-    return jsonify({'summary': summary})
-
-if __name__ == '__main__':
-    app.run(port=8000)
-```
-
-## Configuration
-
-You can modify the API configuration in `src/config/api.ts`:
-
-```typescript
-export const API_CONFIG = {
-    BASE_URL: "http://localhost:8000", // Change this to your backend URL
-    ENDPOINTS: {
-        SUMMARIZE: "/summarize", // Change this to your endpoint path
-    },
-    TIMEOUT: 30000, // Request timeout in milliseconds
-};
-```
 
 ## Usage
 
@@ -109,14 +70,6 @@ The built files will be in the `dist/` directory.
 -   **CSS Variables** - Theming system
 -   **Modern CSS** - Grid, Flexbox, and modern properties
 
-## Color Theme
-
-The application uses a lime-based color theme with the following palette:
-
--   **Primary**: Lime green variants (#84cc16 to #365314)
--   **Neutral**: Gray variants for text and backgrounds
--   **Gradients**: Subtle gradients for visual appeal
-
 ## Browser Support
 
 -   Chrome/Edge 88+
@@ -130,7 +83,3 @@ The application uses a lime-based color theme with the following palette:
 3. Commit your changes
 4. Push to the branch
 5. Create a Pull Request
-
-## License
-
-This project is licensed under the MIT License.
